@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Convertisseur de Permissions</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Convertisseur de Permissions Linux</h1>
+    <form>
+        <div class="category">
+            <h3>Utilisateur</h3>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" data-value="4" onclick="updatePermissions()">
+                    <span class="icon">Lecture</span>
+                </label>
+                <label>
+                    <input type="checkbox" data-value="2" onclick="updatePermissions()">
+                    <span class="icon">Écriture</span>
+                </label>
+                <label>
+                    <input type="checkbox" data-value="1" onclick="updatePermissions()">
+                    <span class="icon">Exécution</span>
+                </label>
+            </div>
+        </div>
+        <div class="category">
+            <h3>Groupe</h3>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" data-value="4" onclick="updatePermissions()">
+                    <span class="icon">Lecture</span>
+                </label>
+                <label>
+                    <input type="checkbox" data-value="2" onclick="updatePermissions()">
+                    <span class="icon">Écriture</span>
+                </label>
+                <label>
+                    <input type="checkbox" data-value="1" onclick="updatePermissions()">
+                    <span class="icon">Exécution</span>
+                </label>
+            </div>
+        </div>
+        <div class="category">
+            <h3>Autres</h3>
+            <div class="checkbox-group">
+                <label>
+                    <input type="checkbox" data-value="4" onclick="updatePermissions()">
+                    <span class="icon">Lecture</span>
+                </label>
+                <label>
+                    <input type="checkbox" data-value="2" onclick="updatePermissions()">
+                    <span class="icon">Écriture</span>
+                </label>
+                <label>
+                    <input type="checkbox" data-value="1" onclick="updatePermissions()">
+                    <span class="icon">Exécution</span>
+                </label>
+            </div>
+        </div>
+    </form>
+    <h3>Code de permission : <span id="permissionCode">000</span></h3>
+</div>
+
+<script>
+    function updatePermissions() {
+        const categories = document.querySelectorAll('.category');
+        let permissionCode = '';
+
+        categories.forEach(category => {
+            let categoryValue = 0;
+            category.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                if (checkbox.checked) {
+                    categoryValue += parseInt(checkbox.getAttribute('data-value'));
+                }
+            });
+            permissionCode += categoryValue;
+        });
+
+        document.getElementById('permissionCode').textContent = permissionCode;
+    }
+</script>
+
+</body>
+</html>
